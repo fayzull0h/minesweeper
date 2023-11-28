@@ -48,8 +48,14 @@ void Grid::setMine(size_t r, size_t c) {  // Place a mine at r, c
 std::ostream &operator<<(std::ostream &out, const Grid &g) {
   for (size_t i = 0; i < g.dimensions; ++i) {
     for (size_t j = 0; j < g.dimensions; ++j) {
-      out << g.theGrid[i][j];
+      g.theGrid[i][j].print(out);
     }
     out << '\n';
   }
+}
+
+int Grid::getNumMines() const { return numMines; }
+
+bool Grid::press(size_t r, size_t c) {
+
 }

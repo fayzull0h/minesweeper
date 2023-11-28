@@ -1,4 +1,5 @@
 #include <cstddef>
+#include <iostream>
 #include "cell.h"
 #include "info.h"
 
@@ -18,3 +19,6 @@ Info Cell::getInfo() const {
   return Info{r, c};
 }
 
+void Cell::print(std::ostream &out) const {
+  mine ? (out << 'X') : (out << neighboursWithMines);
+}

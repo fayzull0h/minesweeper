@@ -63,7 +63,9 @@ int main(int argc, char *argv[]) {
       started = true;
     }
     else if (cmd == "press" && started) {
-
+      int r, c;
+      cin >> r >> c;
+      g.press(r, c);
     }
   }
   }
