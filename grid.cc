@@ -11,6 +11,7 @@ void Grid::init(size_t n) {
   theGrid = vector<vector<Cell>>();
   theGrid.reserve(n);
   dimensions = n;
+  td = new TextDisplay(n);
 
   for (size_t i = 0; i < n; ++i) {
     theGrid.emplace_back();
@@ -26,6 +27,7 @@ void Grid::init(size_t n) {
     size_t c = 0;
     for (auto &cell : row) {
       size_t nbrs = 0;
+      cell.attach(td);
       if (c > 0 && r > 0) { cell.attach(&theGrid[r-1][c-1]); ++nbrs; }
       if (c > 0) { cell.attach(&theGrid[r][c-1]); ++nbrs; }
       if (r > 0) { cell.attach(&theGrid[r-1][c]); ++nbrs; }
@@ -46,17 +48,19 @@ void Grid::setMine(size_t r, size_t c) {  // Place a mine at r, c
 }
 
 std::ostream &operator<<(std::ostream &out, const Grid &g) {
-  for (size_t i = 0; i < g.dimensions; ++i) {
-    for (size_t j = 0; j < g.dimensions; ++j) {
-      g.theGrid[i][j].print(out);
-    }
-    out << '\n';
-  }
-  return out;
+  return (out << *(g.td));
 }
 
 int Grid::getNumMines() const { return numMines; }
 
 bool Grid::press(size_t r, size_t c) {
   return false;
+}
+
+Grid::~Grid() {
+  delete td;
+}
+
+int Grid::getNumPressed() const {
+  return 0;
 }

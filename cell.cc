@@ -22,3 +22,11 @@ Info Cell::getInfo() const {
 void Cell::print(std::ostream &out) const {
   mine ? (out << 'X') : (out << neighboursWithMines);
 }
+
+void Cell::notify(Subject<Info, State> &whoFrom) {
+  // do smth
+}
+
+void Cell::press() {
+  // do smth
+}
