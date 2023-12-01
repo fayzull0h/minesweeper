@@ -13,7 +13,7 @@ class InvalidMove{};
 
 class Grid {
   std::vector<std::vector<Cell>> theGrid;  // The actual grid. 
-  int dimensions;
+  size_t dimensions;
   int numMines = 0;
   int numPressed = 0;
   // Add private members, if necessary.

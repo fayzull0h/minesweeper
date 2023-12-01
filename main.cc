@@ -4,7 +4,7 @@
 #include <fstream>
 #include "grid.h"
 #include "state.h"
-#include "todolist.h"
+//#include "todolist.h"
 using namespace std;
 
 int main(int argc, char *argv[]) {
@@ -65,7 +65,10 @@ int main(int argc, char *argv[]) {
     else if (cmd == "press" && started) {
       int r, c;
       cin >> r >> c;
-      g.press(r, c);
+      if (!g.press(r, c)) {
+        cout << "You lose.\n";
+        return 0;
+      }
     }
   }
   }

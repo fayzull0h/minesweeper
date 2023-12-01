@@ -52,10 +52,11 @@ std::ostream &operator<<(std::ostream &out, const Grid &g) {
     }
     out << '\n';
   }
+  return out;
 }
 
 int Grid::getNumMines() const { return numMines; }
 
 bool Grid::press(size_t r, size_t c) {
-
+  return false;
 }
