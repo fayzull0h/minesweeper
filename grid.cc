@@ -54,9 +54,8 @@ std::ostream &operator<<(std::ostream &out, const Grid &g) {
 int Grid::getNumMines() const { return numMines; }
 
 bool Grid::press(size_t r, size_t c) {
-  theGrid.at(r).at(c).press();
-  Info cellInfo = theGrid.at(r).at(c).getInfo();
-  ++numPressed;
+  theGrid[r][c].press();
+  Info cellInfo = theGrid[r][c].getInfo();
   return cellInfo.mine;
 }
 
@@ -65,5 +64,5 @@ Grid::~Grid() {
 }
 
 int Grid::getNumPressed() const {
-  return numPressed;
+  return td->getNumPressed();
 }

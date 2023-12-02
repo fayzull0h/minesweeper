@@ -21,5 +21,8 @@ void TextDisplay::notify(Subject<Info, State> &whoFrom) {
   StateType cellState = cell->getState().type;
   if (cellState == StateType::Pressed) {
     theDisplay.at(cellInfo.row).at(cellInfo.col) = cellInfo.neighboursWithMines + '0';
+    ++numPressed;
   }
 }
+
+int TextDisplay::getNumPressed() const { return numPressed; }
