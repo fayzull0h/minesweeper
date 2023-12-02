@@ -16,8 +16,6 @@ class Grid {
   TextDisplay *td;
   size_t dimensions;
   int numMines = 0;
-  // Add private members, if necessary.
-
  public:
   ~Grid(); // doesn't need to do anything?
   

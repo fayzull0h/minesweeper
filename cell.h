@@ -26,6 +26,5 @@ class Cell : public Subject<Info, State>, public Observer<Info, State> {
   void notify(Subject<Info, State> &whoFrom) override;// My neighbours will call this
                                                 // when they've changed state
   Info getInfo() const override;
-  void print(std::ostream &out) const;
 };
 #endif

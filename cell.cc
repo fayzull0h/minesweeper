@@ -19,16 +19,10 @@ Info Cell::getInfo() const {
   return Info{r, c, mine, neighboursWithMines};
 }
 
-void Cell::print(std::ostream &out) const {
-  mine ? (out << 'X') : (out << neighboursWithMines);
-}
-
 void Cell::notify(Subject<Info, State> &whoFrom) {
-  StateType myState = this->getState().type;
-  //if (myState == StateType::Done) return;
-
   Cell * sender = static_cast<Cell *>(&whoFrom);
   StateType senderState = sender->getState().type;
+  StateType myState = this->getState().type;
 
   switch(senderState) {
     /* if another cell is pressed, send a reply for whether im a mine */
@@ -52,19 +46,24 @@ void Cell::notify(Subject<Info, State> &whoFrom) {
         press();
       }
       break;
-
+    
     default:
       break;
   }
 }
 
 void Cell::press() {
+  // if i'm already done, don't do anything
   if (getState().type == StateType::Done) return;
+
   setState(State{StateType::Pressed});
   notifyObservers();
+
+  // if the number of neighbours with mines is 0, propagate
   if (neighboursWithMines == 0) {
     setState(State{StateType::Propagate});
     notifyObservers();
   }
+
   setState(State{StateType::Done});
 }

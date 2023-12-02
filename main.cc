@@ -71,6 +71,8 @@ int main(int argc, char *argv[]) {
         return 0;
       }
       cout << g;
+
+      // check win condition
       if ((g.getNumMines() + g.getNumPressed()) == gameSize*gameSize) {
         cout << "You win.\n";
         return 0;

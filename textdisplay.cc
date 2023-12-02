@@ -19,6 +19,8 @@ void TextDisplay::notify(Subject<Info, State> &whoFrom) {
   Cell * cell = static_cast<Cell *>(&whoFrom);
   Info cellInfo = cell->getInfo();
   StateType cellState = cell->getState().type;
+
+  // Change the display, only if the sender is a pressed cell
   if (cellState == StateType::Pressed) {
     theDisplay.at(cellInfo.row).at(cellInfo.col) = cellInfo.neighboursWithMines + '0';
     ++numPressed;

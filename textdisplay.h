@@ -16,6 +16,7 @@ class TextDisplay: public Observer<Info, State> {
 
   void notify(Subject<Info, State> &whoFrom) override;
 
+  // Returns the number of cells that were pressed
   int getNumPressed() const;
 
   friend std::ostream &operator<<(std::ostream &out, const TextDisplay &td);
