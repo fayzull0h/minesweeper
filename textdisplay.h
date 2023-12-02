@@ -13,9 +13,7 @@ class TextDisplay: public Observer<Info, State> {
  public:
   TextDisplay(size_t n): theDisplay(n, std::vector<char>(n, '-')), gridSize(n) {}
 
-  void notify(Subject<Info, State> &whoFrom) override {
-    // do smth
-  }
+  void notify(Subject<Info, State> &whoFrom) override;
 
   friend std::ostream &operator<<(std::ostream &out, const TextDisplay &td);
 };

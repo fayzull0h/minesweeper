@@ -65,10 +65,12 @@ int main(int argc, char *argv[]) {
     else if (cmd == "press" && started) {
       int r, c;
       cin >> r >> c;
-      if (!g.press(r, c)) {
+      bool result = g.press(r, c);
+      if (result) {
         cout << "You lose.\n";
         return 0;
       }
+      cout << g;
     }
   }
   }

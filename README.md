@@ -5,5 +5,3 @@ Todo:
 - grid.press()
     - cell.press()
 - main press()
-
-- makefile

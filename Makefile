@@ -26,5 +26,5 @@ info.o: info.h state.h
 state.o: state.h
 	${CC} ${CFLAGS} -c state.h
 
-main.o: grid.h state.h
+main.o: main.cc grid.h state.h
 	${CC} ${CFLAGS} -c main.cc

@@ -2,6 +2,7 @@
 #include "textdisplay.h"
 #include "info.h"
 #include "subject.h"
+#include "cell.h"
 using namespace std;
 
 std::ostream &operator<<(std::ostream &out, const TextDisplay &td) {
@@ -12,4 +13,13 @@ std::ostream &operator<<(std::ostream &out, const TextDisplay &td) {
     out << '\n';
   }
   return out;
+}
+
+void TextDisplay::notify(Subject<Info, State> &whoFrom) {
+  Cell * cell = static_cast<Cell *>(&whoFrom);
+  Info cellInfo = cell->getInfo();
+  StateType cellState = cell->getState().type;
+  if (cellState == StateType::Pressed) {
+    theDisplay.at(cellInfo.row).at(cellInfo.col) = cellInfo.neighboursWithMines + '0';
+  }
 }

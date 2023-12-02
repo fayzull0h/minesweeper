@@ -27,7 +27,6 @@ void Grid::init(size_t n) {
     size_t c = 0;
     for (auto &cell : row) {
       size_t nbrs = 0;
-      cell.attach(td);
       if (c > 0 && r > 0) { cell.attach(&theGrid[r-1][c-1]); ++nbrs; }
       if (c > 0) { cell.attach(&theGrid[r][c-1]); ++nbrs; }
       if (r > 0) { cell.attach(&theGrid[r-1][c]); ++nbrs; }
@@ -37,6 +36,7 @@ void Grid::init(size_t n) {
       if (r < n-1) { cell.attach(&theGrid[r+1][c]); ++nbrs; }
       if (c < n-1 && r < n-1) { cell.attach(&theGrid[r+1][c+1]); ++nbrs; }
       cell.setNumNeighbours(nbrs);
+      cell.attach(td);
       ++c;
     }
     ++r;
@@ -54,7 +54,10 @@ std::ostream &operator<<(std::ostream &out, const Grid &g) {
 int Grid::getNumMines() const { return numMines; }
 
 bool Grid::press(size_t r, size_t c) {
-  return false;
+  theGrid.at(r).at(c).press();
+  Info cellInfo = theGrid.at(r).at(c).getInfo();
+  ++numPressed;
+  return cellInfo.mine;
 }
 
 Grid::~Grid() {
@@ -62,5 +65,5 @@ Grid::~Grid() {
 }
 
 int Grid::getNumPressed() const {
-  return 0;
+  return numPressed;
 }

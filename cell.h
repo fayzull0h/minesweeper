@@ -12,7 +12,6 @@ class Cell : public Subject<Info, State>, public Observer<Info, State> {
   int numNeighbours = 0;
   bool mine = false;
   
-
  public:
   Cell(size_t r, size_t c);
   void setNumNeighbours(int n);
